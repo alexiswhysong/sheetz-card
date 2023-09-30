@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="Description" content="Put your description here.">
+  <base href="/">
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      background-color: #ededed;
+    }
+  </style>
+  <title>sheetz-card</title>
+</head>
+
+<body>
+  <div class="buttons"></div> 
+    <button class="duplicate">Duplicate</button>
+    <button class="modifytitle">Change Name</button>
+    <button id="deletelastcard">Delete</button>
+  <button data-toggle-btn>Details</button>
+  </div>
+  <div id="app">
+  <sheetz-card></sheetz-card>
+  </div>
+  <script type="module" src="./src/sheetz-card.js"></script>
+  <script>
+ 
+
+// toggle the 1ST instance of details
+document.querySelector('button[data-toggle-btn]').shadowRoot.querySelector('button[data-toggle-btn]').addEventListener('click', function(e){
+  const details = document.querySelector('sheetz-card').shadowRoot.querySelector('details');
+  console.log(details);
+  if (details.getAttribute('open')) {
+    details.removeAttribute('open');
+  }
+  else {
+    details.setAttribute('open','open');    
+  }
+});
+
+// duplicate the 1st item
+document.querySelector('.duplicate').addEventListener('click', function(e) {
+  const itemToClone = document.querySelector('sheetz-card').cloneNode();
+  document.querySelector('#app').appendChild(itemToClone);
+});
+
+// modify name of 1st item
+document.querySelector('.modifytitle').addEventListener('click', function(e) {
+  let order = prompt("New Sheetz Order...");
+  if (order) {
+    document.querySelector('sheetz-card').shadowRoot('.wrapper h3').order = order;
+  }
+});
+
+// delete the last item
+document.querySelector('#deletelastcard').addEventListener('click', function(e) {
+  let wantsTo = confirm("Are you sure?");
+  if (wantsTo) {
+    if (document.querySelector('#app :last-child') !== document.querySelector('sheetz-card')) {
+      document.querySelector('#app :last-child').remove();      
+    }
+    else {
+      alert("You Will Loose Your MTO");
+    }
+  }
+});
+// Select the button element and the heading element
+const changeButton = document.getElementById('changeButton');
+const myHeading = document.getElementById('myHeading');
+
+// Add a click event listener to the button
+
+  </script>
+</body>
+
+</html>
