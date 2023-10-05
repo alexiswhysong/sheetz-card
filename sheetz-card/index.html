@@ -16,7 +16,7 @@
       background-color: #ededed;
     }
   </style>
-  <title>sheetz-card</title>
+  <title>sheetz-card-1</title>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     <button data-toggle-btn>Details</button>
   </div>
   <div id="app">
-  <sheetz-card></sheetz-card>
+  <sheetz-card-1></sheetz-card-1>
 </div>
   <script type="module" src="./src/sheetz-card.js"></script>
   <script>
@@ -44,7 +44,7 @@
 
 // toggle the 1ST instance of the stats
 document.querySelector('button[data-toggle-btn]').addEventListener('click', (e) => {
-  const details = document.querySelector('sheetz-card').shadowRoot.querySelector('details')
+  const details = document.querySelector('sheetz-card-1').shadowRoot.querySelector('details')
   console.log(details);
 
   if (details.getAttribute('open')) {
@@ -57,7 +57,7 @@ document.querySelector('button[data-toggle-btn]').addEventListener('click', (e) 
 
 // duplicate the 1st item
 document.querySelector('.duplicate').addEventListener('click', function(e) {
-  const itemToClone =  document.querySelector('sheetz-card').cloneNode();
+  const itemToClone =  document.querySelector('sheetz-card-1').cloneNode();
   document.querySelector('#app').appendChild(itemToClone);
 });
 
@@ -65,7 +65,7 @@ document.querySelector('.duplicate').addEventListener('click', function(e) {
 document.querySelector('.modifytitle').addEventListener('click', function(e) {
   let name = prompt("New Sheetz Order...");
   if (name) {
-    document.querySelector('sheetz-card').name = name;
+    document.querySelector('sheetz-card-1').name = name;
   }
 });
 
@@ -73,7 +73,7 @@ document.querySelector('.modifytitle').addEventListener('click', function(e) {
 document.querySelector('#deletelastcard').addEventListener('click', function(e) {
   let wantsTo = confirm("Are you sure?");
   if (wantsTo) {
-    if (document.querySelector('#app :last-child') !== document.querySelector('sheetz-card')) {
+    if (document.querySelector('#app :last-child') !== document.querySelector('sheetz-card-1')) {
       document.querySelector('#app :last-child').remove();      
     }
     else {

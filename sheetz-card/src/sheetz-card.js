@@ -135,4 +135,4 @@ details {
       `;
     }
   }
-customElements.define('sheetz-card', SheetzCard); 
+customElements.define('sheetz-card-1', SheetzCard); 
