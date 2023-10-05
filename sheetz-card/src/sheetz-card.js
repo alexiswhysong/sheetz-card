@@ -1,23 +1,20 @@
 import { LitElement, html, css } from 'lit';
-
-const sheetzLogo = new URL('../assets/sheetz.jpg', import.meta.url);
-
-export class MyElement extends LitElement {
-  static get properties() {
-    return {
-      order: { 
-        type: String,
-        reflect: true 
-      },
-      food: { 
-        type: String,
-      },
-    
-    };
-  } 
-  static get styles() {
-    return css`
-    .wrapper {
+const dog = new URL('../assets/dog.jpg', import.meta.url).href;
+export class SheetzCard extends LitElement {
+    static get properties() {
+      return {
+        name:  { 
+          type: String,
+          reflect: true,
+        },
+        food: {
+          type: String,
+        },
+      }
+    }
+    static get styles() {
+      return css`
+        .wrapper {
   width: 400px;
   border: 10px solid black;
   display: inline-flex;
@@ -83,7 +80,6 @@ details {
   font-weight: bold;
 }
 
-
 @media only screen and (max-width: 1200px){
   .wrapper {
     background-color: red;
@@ -108,35 +104,35 @@ details {
     display: none;
   }
 }
-    `;
-  }
-  constructor() {
-    super();
-    this.order = 'Sheetz MTO';
-    this.food = 'Hot Dogs';
-  }
-
-  render() {
-    return html`
+        `;
+    }
+    constructor() {
+      super();
+      this.name = 'Sheetz';
+      this.food = 'Hot Dogs';
+    }
+    render() {
+      return html`
   <div class="wrapper">
-    <div class="container">
-      <img class="image" src=${sheetzLogo}"/>
-      <div class="header">
-        <h3>${this.order}</h3>
-          <h4>${this.food}</h4>
-      </div>
-      <details class="details">
-        <summary>Food Details</summary>
-      <div>
+  <div class="container">
+  <img class="image" src="${dog}"/>
+  <div class="header">
+    <h3>${this.name}</h3>
+    <h4>${this.food}</h4>
+  </div>
+  <details class="details">
+    <summary>Food Details</summary>
+    <div>
       <ul>
         <li>2 Beef hotdogs on brioche buns with optional codiments such as ketchup, mustard, or chili cheese sauce.</li>
         <li>additional charges could be applied to MTO</li>
        </ul>
     </div>
-    </details>
-      </div>
-</div>
-    `;
+    </details>   
+    </div>
+    </div>
+  
+      `;
+    }
   }
-}
-customElements.define('sheetz-card', SheetzCard);
+customElements.define('sheetz-card', SheetzCard); 

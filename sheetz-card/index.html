@@ -20,23 +20,33 @@
 </head>
 
 <body>
-  <div class="buttons"></div> 
+  <div class="buttons">
     <button class="duplicate">Duplicate</button>
     <button class="modifytitle">Change Name</button>
     <button id="deletelastcard">Delete</button>
-  <button data-toggle-btn>Details</button>
+    <button data-toggle-btn>Details</button>
   </div>
   <div id="app">
   <sheetz-card></sheetz-card>
-  </div>
+</div>
   <script type="module" src="./src/sheetz-card.js"></script>
   <script>
- 
+    document.addEventListener("DOMContentLoaded", function() {
+    const header = document.querySelectorAll(".header h3");
 
-// toggle the 1ST instance of details
-document.querySelector('button[data-toggle-btn]').shadowRoot.querySelector('button[data-toggle-btn]').addEventListener('click', function(e){
-  const details = document.querySelector('sheetz-card').shadowRoot.querySelector('details');
+    header.forEach(title => {
+        title.addEventListener("click", function() {
+            // Change the text of the title
+            this.textContent = "Something Else";
+        });
+    });
+});
+
+// toggle the 1ST instance of the stats
+document.querySelector('button[data-toggle-btn]').addEventListener('click', (e) => {
+  const details = document.querySelector('sheetz-card').shadowRoot.querySelector('details')
   console.log(details);
+
   if (details.getAttribute('open')) {
     details.removeAttribute('open');
   }
@@ -47,15 +57,15 @@ document.querySelector('button[data-toggle-btn]').shadowRoot.querySelector('butt
 
 // duplicate the 1st item
 document.querySelector('.duplicate').addEventListener('click', function(e) {
-  const itemToClone = document.querySelector('sheetz-card').cloneNode();
+  const itemToClone =  document.querySelector('sheetz-card').cloneNode();
   document.querySelector('#app').appendChild(itemToClone);
 });
 
 // modify name of 1st item
 document.querySelector('.modifytitle').addEventListener('click', function(e) {
-  let order = prompt("New Sheetz Order...");
-  if (order) {
-    document.querySelector('sheetz-card').shadowRoot('.wrapper h3').order = order;
+  let name = prompt("New Sheetz Order...");
+  if (name) {
+    document.querySelector('sheetz-card').name = name;
   }
 });
 
@@ -78,6 +88,6 @@ const myHeading = document.getElementById('myHeading');
 // Add a click event listener to the button
 
   </script>
-</body>
+  </body>
 
 </html>
